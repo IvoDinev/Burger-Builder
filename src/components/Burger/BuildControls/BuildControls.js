@@ -9,10 +9,19 @@ const controls = [
     { label: 'Meat', type: 'meat' }
 ];
 
-const BuildControls = (props) => (
-    <div className={classes.BuildControls}>
-        {controls.map((control, index) => <BuildControl minus={() => props.ingrRemoved(control.type)} plus={() => props.ingrAdded(control.type)} label={control.label} key={control + index} />)}
-    </div>
-);
+const BuildControls = (props) =>
+    (
+        <div className={classes.BuildControls}>
+            <p>Current Price: <strong>{props.price}</strong></p>
+            {controls.map((control, index) =>
+                <BuildControl
+                    isDisabled={props.disableBtn[control.type]}
+                    minus={() => props.ingrRemoved(control.type)}
+                    plus={() => props.ingrAdded(control.type)}
+                    label={control.label}
+                    key={control + index} />
+            )}
+        </div>
+    );
 
 export default BuildControls;
